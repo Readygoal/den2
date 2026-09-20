@@ -1,16 +1,27 @@
-# Academic Writing Studio — Ahmet Başal
+# Academic Writing Workbench — Ahmet Başal
 
-Privacy-first static companion to *Academic Writing Guide* / *Akademik Yazma Rehberi*.
+A practical, privacy-first companion to *Academic Writing Guide* / *Akademik Yazma Rehberi*.
 
-## Content-protection principle
-This repository does **not** contain either book PDF, chapter archive, example bank, or the full text of the 25 book worksheets. The web application uses transformed diagnostic rules, generic decision workflows, and guide reference numbers. It is intentionally a companion, not a digital copy of the book.
+The platform is designed around one principle: **use the book's knowledge without distributing the book itself.**
 
-## Cost model
-The core site is static and can run on GitHub Pages at no per-user API cost. Optional Local AI uses WebLLM in a compatible user's browser and downloads an open model to that user's device; no OpenAI/Anthropic API key is required.
+## What the Workbench does
 
-## Publishing
-The site is plain HTML/CSS/JS. Publish the repository root with GitHub Pages.
+- Searches 120 distilled academic-writing problems from the guide.
+- Diagnoses Abstract, Introduction, Literature Review, Method, Findings, Discussion, Conclusion, and general paragraphs with section-specific checks.
+- Provides structured builders for research questions, introductions, abstracts, findings, discussions, conclusions, and academic paragraphs.
+- Includes citation ↔ reference matching, paraphrase-overlap checking, and a literature synthesis matrix.
+- Turns all 25 book toolkit items into editable digital workspaces.
+- Saves projects and user entries locally in the browser.
+- Includes submission tools for similarity/AI responsibility, thesis-to-article conversion, journal fit, and reviewer responses.
 
-## Ask the Guide
+## Privacy and cost
 
-The public site includes a protected **Ask the Guide** feature. It answers natural-language questions with short, transformed guidance, relevant guide problem-number references, and links to the site's interactive tools. It does not retrieve or reproduce full book passages. The core Q&A runs in the browser and requires no paid API key.
+The core platform runs in the browser and requires no paid OpenAI/Anthropic API. Project data are stored in browser local storage unless the user exports them.
+
+## Book protection
+
+The repository does not contain either book PDF, full chapter text, the complete example bank, or a downloadable book archive. The public problem layer contains compact transformed principles needed for the diagnostic and navigation functions.
+
+## Deployment
+
+This is a static site suitable for GitHub Pages.
