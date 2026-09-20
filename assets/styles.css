@@ -14,3 +14,8 @@ html[data-theme=dark]{--bg:#121722;--side:#171d29;--surface:#1b2230;--soft:#232c
 .queue-check{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:var(--surface);font-weight:900;color:var(--accent)}
 .queue-item b{font-size:11px}.queue-item p{margin:4px 0 2px;font-size:10px;color:var(--muted);line-height:1.5}.queue-item small{font-size:8px;color:var(--accent);font-weight:800}
 .check-actions{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+
+.guide-do-now{margin:14px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.guide-do-now h4{margin:0 0 7px;font-size:11px}
+.guide-do-now ol{margin:0;padding-left:20px}.guide-do-now li{margin:6px 0;font-size:11px;line-height:1.5;color:var(--muted)}
+.guide-related{margin-top:16px}
