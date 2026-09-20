@@ -1,18 +1,21 @@
 # Content protection design
 
-The public website follows one rule: **use the book's knowledge without distributing the book's content.**
+The public platform follows one rule: **use the book's knowledge without distributing the book's content.**
 
-Not included in this public repository:
-- No Turkish or English book PDF/DOCX.
-- No chapter-by-chapter text database.
-- No full Wrong/Improved example bank.
-- No complete book worksheet tables.
-- No hidden downloadable book archive.
+## Not published
 
-Public functionality consists of transformed heuristic checks, short original decision workflows, guide problem-number references, and user-generated notes stored in the user's browser.
+- No Turkish or English book PDF or DOCX.
+- No full chapter archive.
+- No complete Wrong/Improved example bank.
+- No hidden downloadable book copy.
+- No long book passages served through Ask the Guide.
 
-A static website cannot keep JavaScript logic secret from a determined visitor. Therefore the book is protected by **not shipping the source content at all**, rather than relying on obfuscation or disabled copy/paste.
+## What is public
 
-## Ask the Guide protection
+The browser needs a compact functional knowledge layer in order to work. It contains 120 short transformed problem principles, problem numbers, links to digital tools, section-specific diagnostic rules, and editable workflow fields. These are used for search, diagnosis, and decision support rather than to reconstruct the book.
 
-The Q&A feature works from a deliberately compact, transformed knowledge layer. It contains principles and decision prompts rather than chapter text. Requests for full chapters, long passages, the complete example bank, the whole toolkit, or book downloads are not fulfilled by the application; the user is directed to the books instead.
+A static website cannot make client-side JavaScript secret. Protection therefore relies on **not shipping the full source content**, rather than on obfuscation, disabling right-click, or pretending browser code cannot be inspected.
+
+## User data
+
+Drafts, project decisions, synthesis notes, and toolkit entries are processed/stored locally in the user's browser unless the user explicitly exports them.
