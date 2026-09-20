@@ -12,3 +12,7 @@ Not included in this public repository:
 Public functionality consists of transformed heuristic checks, short original decision workflows, guide problem-number references, and user-generated notes stored in the user's browser.
 
 A static website cannot keep JavaScript logic secret from a determined visitor. Therefore the book is protected by **not shipping the source content at all**, rather than relying on obfuscation or disabled copy/paste.
+
+## Ask the Guide protection
+
+The Q&A feature works from a deliberately compact, transformed knowledge layer. It contains principles and decision prompts rather than chapter text. Requests for full chapters, long passages, the complete example bank, the whole toolkit, or book downloads are not fulfilled by the application; the user is directed to the books instead.
