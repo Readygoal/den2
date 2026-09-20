@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7fafc">
+<meta name="description" content="Academic Writing Studio — a practical, privacy-first writing companion informed by Ahmet Başal's Academic Writing Guide.">
+<title>Academic Writing Studio — Ahmet Başal</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar">
+  <button class="brand" data-nav="home" aria-label="Home">
+    <span class="brand-mark">A</span>
+    <span class="brand-copy"><b>Academic Writing Studio</b><small>by Ahmet Başal</small></span>
+  </button>
+  <nav class="desktop-nav" aria-label="Primary navigation">
+    <button data-nav="home" class="active" data-i18n="navHome">Home</button>
+    <button data-nav="lab" data-i18n="navLab">Draft Lab</button>
+    <button data-nav="path" data-i18n="navPath">Writing Path</button>
+    <button data-nav="toolkit" data-i18n="navToolkit">Toolkit</button>
+    <button data-nav="books" data-i18n="navBooks">Books</button>
+  </nav>
+  <div class="top-controls">
+    <div class="theme-picker" aria-label="Theme">
+      <button class="theme-dot" data-theme="cloud" title="Cloud" style="--dot:#eef4ff"></button>
+      <button class="theme-dot" data-theme="ivory" title="Ivory" style="--dot:#fff4d8"></button>
+      <button class="theme-dot" data-theme="sage" title="Sage" style="--dot:#dcefdc"></button>
+      <button class="theme-dot" data-theme="sky" title="Sky" style="--dot:#d9f2ff"></button>
+      <button class="theme-dot" data-theme="lavender" title="Lavender" style="--dot:#eee2ff"></button>
+      <button class="theme-dot" data-theme="midnight" title="Midnight" style="--dot:#14213d"></button>
+    </div>
+    <select id="uiLang" class="mini-select" aria-label="Interface language">
+      <option value="en">EN</option><option value="tr">TR</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option>
+    </select>
+    <button class="settings-btn" data-nav="settings" aria-label="Settings">⚙</button>
+  </div>
+</header>
+
+<main>
+<section id="homeView" class="view active">
+  <div class="hero">
+    <div class="hero-copy">
+      <span class="pill" data-i18n="privacyPill">Book-informed · privacy-first · no API bill</span>
+      <h1 data-i18n="heroTitle">Turn academic-writing problems into <em>clear next moves.</em></h1>
+      <p data-i18n="heroText">This studio does not distribute the book. It turns the guide’s underlying principles into practical diagnostics, decisions, and writing workflows.</p>
+      <div class="hero-actions">
+        <button class="primary" data-nav="lab" data-i18n="scanDraft">Scan my draft</button>
+        <button class="secondary" data-nav="path" data-i18n="chooseTask">Choose what I’m working on</button>
+      </div>
+      <div class="trust-row">
+        <span><b>0</b><small data-i18n="pdfsHosted">book PDFs hosted</small></span>
+        <span><b>0</b><small data-i18n="apiKeys">API keys required</small></span>
+        <span><b>6</b><small data-i18n="themes">visual themes</small></span>
+        <span><b>5</b><small data-i18n="languages">interface languages</small></span>
+      </div>
+    </div>
+    <div class="hero-board">
+      <div class="board-head"><span data-i18n="todayDesk">Today at your writing desk</span><b id="todayDate"></b></div>
+      <div class="focus-card">
+        <span class="focus-label" data-i18n="microTask">Micro-task</span>
+        <h3 id="dailyTask">Make one claim more precise.</h3>
+        <p id="dailyPrompt">Find a sentence that sounds stronger than your evidence and calibrate it.</p>
+        <button id="newTask" class="text-btn" data-i18n="anotherTask">Give me another</button>
+      </div>
+      <div class="mini-grid">
+        <button data-nav="lab"><span>01</span><b data-i18n="quickDiagnose">Quick Diagnose</b><small data-i18n="quickDiagnoseSub">Paste a paragraph and see risk signals.</small></button>
+        <button data-nav="path"><span>02</span><b data-i18n="pathfinder">Pathfinder</b><small data-i18n="pathfinderSub">Start from the task, not the chapter.</small></button>
+        <button data-nav="toolkit"><span>03</span><b data-i18n="workspace">Workspace</b><small data-i18n="workspaceSub">Build and save your decisions locally.</small></button>
+        <button data-nav="books"><span>04</span><b data-i18n="bookPortal">Book Portal</b><small data-i18n="bookPortalSub">Buy the full Turkish or English guide.</small></button>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-block">
+    <div class="section-heading"><span class="eyebrow" data-i18n="startWhere">START WHERE YOU ARE</span><h2 data-i18n="whatDoing">What are you trying to do today?</h2><p data-i18n="whatDoingText">Pick the job in front of you. The studio will take you to the smallest useful next step.</p></div>
+    <div id="taskCards" class="task-cards"></div>
+  </section>
+
+  <section class="protection-banner">
+    <div><span>🔒</span><div><b data-i18n="protectionTitle">The book stays the book.</b><p data-i18n="protectionText">No PDF, chapter text, example bank, or full worksheet content is shipped with this website. The platform uses transformed decision rules and interactive workflows inspired by the guide.</p></div></div>
+    <button data-nav="books" class="secondary" data-i18n="seeBooks">See the books</button>
+  </section>
+</section>
+
+<section id="labView" class="view">
+  <div class="page-head"><div><span class="eyebrow">DRAFT LAB</span><h2 data-i18n="labTitle">A calm second look at your paragraph</h2><p data-i18n="labText">The scanner flags patterns worth reviewing. It does not grade your writing and it does not upload your draft.</p></div><span class="privacy-badge">● <span data-i18n="runsBrowser">Runs in your browser</span></span></div>
+  <div class="lab-layout">
+    <div class="draft-card">
+      <div class="draft-toolbar"><select id="sectionType"><option value="general">General</option><option value="abstract">Abstract</option><option value="introduction">Introduction</option><option value="literature">Literature review</option><option value="method">Method</option><option value="findings">Findings</option><option value="discussion">Discussion</option><option value="conclusion">Conclusion</option></select><button id="sampleBtn" class="text-btn" data-i18n="sample">Load sample</button></div>
+      <textarea id="draftText" data-i18n-placeholder="pasteDraft" placeholder="Paste one paragraph or a short section here..."></textarea>
+      <div class="draft-footer"><span id="wordCount">0 words</span><div><button id="clearDraft" class="secondary" data-i18n="clear">Clear</button><button id="scanBtn" class="primary" data-i18n="scan">Scan</button></div></div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-head"><div><span class="eyebrow" data-i18n="reviewSignals">REVIEW SIGNALS</span><h3 id="signalHeadline" data-i18n="beforeScan">Nothing is being judged.</h3></div><div id="signalScore" class="signal-score">—</div></div>
+      <div id="signalsPane" class="signal-list"><div class="empty-note" data-i18n="scanEmpty">Run a scan. You’ll get concise, actionable checks—not a rewritten paragraph.</div></div>
+      <div id="guideRefs" class="guide-ref-box hidden"></div>
+    </div>
+  </div>
+  <div class="lab-secondary">
+    <div class="analysis-card"><span class="eyebrow">TRACK & STITCH</span><h3 data-i18n="flowTitle">Does each sentence have a visible job?</h3><div id="flowMap" class="flow-map"><div class="empty-note" data-i18n="scanFirst">Scan a paragraph first.</div></div></div>
+    <div class="analysis-card"><span class="eyebrow">ABSTRACT X-RAY</span><h3 data-i18n="xrayTitle">Five elements, one compact view</h3><div id="xray" class="xray"><div class="empty-note" data-i18n="abstractHint">Choose Abstract and scan to check for common structural signals.</div></div></div>
+  </div>
+</section>
+
+<section id="pathView" class="view">
+  <div class="page-head"><div><span class="eyebrow" data-i18n="writingPath">WRITING PATH</span><h2 data-i18n="pathTitle">Start with the task, not the table of contents</h2><p data-i18n="pathText">Choose a stage and get a compact sequence of decisions. Each route points back to relevant guide problem numbers without reproducing the book text.</p></div></div>
+  <div id="pathTabs" class="path-tabs"></div>
+  <div id="pathBoard" class="path-board"></div>
+</section>
+
+<section id="toolkitView" class="view">
+  <div class="page-head"><div><span class="eyebrow" data-i18n="toolkit">TOOLKIT</span><h2 data-i18n="toolkitTitle">Small tools for real writing decisions</h2><p data-i18n="toolkitText">These are digital workflows derived from the guide’s practical logic. Your entries stay in this browser unless you export them.</p></div><div><button id="exportWorkspace" class="secondary" data-i18n="export">Export my data</button></div></div>
+  <div class="toolkit-layout"><aside id="toolList" class="tool-list"></aside><div id="toolWorkspace" class="tool-workspace"></div></div>
+</section>
+
+<section id="booksView" class="view">
+  <div class="page-head"><div><span class="eyebrow" data-i18n="books">BOOKS</span><h2 data-i18n="booksTitle">The full content lives in the books</h2><p data-i18n="booksText">The website is a companion, not a substitute. Buy the complete guide to access the full explanations, examples, questions, and toolkit content.</p></div></div>
+  <div class="books-grid">
+    <article class="book-card english"><div class="book-cover"><small>AHMET BAŞAL</small><b>ACADEMIC<br>WRITING<br>GUIDE</b><span>Problems · Examples · Tools</span></div><div class="book-info"><span class="book-lang">ENGLISH EDITION</span><h3>Academic Writing Guide</h3><p data-i18n="englishBookText">A revised and internationally adapted English edition for graduate students, researchers, and academics.</p><a class="primary link-btn" href="https://lnkd.in/dVZad6Dh" target="_blank" rel="noopener noreferrer" data-i18n="buyEnglish">View / buy English edition</a></div></article>
+    <article class="book-card turkish"><div class="book-cover"><small>AHMET BAŞAL</small><b>AKADEMİK<br>YAZMA<br>REHBERİ</b><span>Uygulama ve örnek odaklı</span></div><div class="book-info"><span class="book-lang">TÜRKÇE BASKI</span><h3>Akademik Yazma Rehberi</h3><p data-i18n="turkishBookText">Akademik yazmada sık karşılaşılan sorunları örnekler ve uygulanabilir çözüm yollarıyla ele alan kapsamlı rehber.</p><a class="primary link-btn" href="https://ahmetbasal.gumroad.com/l/akademikyazmarehberi" target="_blank" rel="noopener noreferrer" data-i18n="buyTurkish">Türkçe kitabı incele / satın al</a></div></article>
+  </div>
+  <div class="copyright-note"><b data-i18n="copyrightTitle">Content protection</b><p data-i18n="copyrightText">This site intentionally contains no downloadable copy of either book and no hidden chapter archive. It exposes only transformed interactive logic needed for the tools on screen.</p></div>
+</section>
+
+<section id="settingsView" class="view">
+  <div class="page-head"><div><span class="eyebrow" data-i18n="settings">SETTINGS</span><h2 data-i18n="settingsTitle">Make the studio feel like yours</h2></div></div>
+  <div class="settings-grid">
+    <div class="setting-card"><h3 data-i18n="appearance">Appearance</h3><p data-i18n="appearanceText">Pick a background. Your choice is remembered on this device.</p><div class="theme-cards"><button data-theme="cloud"><i style="background:#eef4ff"></i>Cloud</button><button data-theme="ivory"><i style="background:#fff4d8"></i>Ivory</button><button data-theme="sage"><i style="background:#dcefdc"></i>Sage</button><button data-theme="sky"><i style="background:#d9f2ff"></i>Sky</button><button data-theme="lavender"><i style="background:#eee2ff"></i>Lavender</button><button data-theme="midnight"><i style="background:#14213d"></i>Midnight</button></div></div>
+    <div class="setting-card"><h3 data-i18n="privacy">Privacy</h3><p data-i18n="privacyText">Drafts are processed locally. Saved tool entries live in browser storage. You can erase them at any time.</p><button id="wipeData" class="danger" data-i18n="eraseLocal">Erase local workspace</button></div>
+    <div class="setting-card"><h3 data-i18n="localAi">Optional Local AI</h3><p data-i18n="localAiText">Experimental: download a small open model into a compatible browser and run it on-device. No OpenAI or Anthropic API key is used. The first download can be large.</p><button id="loadAi" class="secondary" data-i18n="loadAi">Load local model</button><div id="aiStatus" class="ai-status">Not loaded</div></div>
+  </div>
+</section>
+</main>
+
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-nav="home">⌂<span data-i18n="navHome">Home</span></button><button data-nav="lab">⌁<span data-i18n="navLab">Draft Lab</span></button><button data-nav="path">↗<span data-i18n="navPath">Path</span></button><button data-nav="toolkit">▦<span data-i18n="navToolkit">Toolkit</span></button><button data-nav="books">▤<span data-i18n="navBooks">Books</span></button></nav>
+<div id="toast" class="toast"></div>
+<script type="module" src="assets/app.js"></script>
+</div>
+</body>
+</html>
