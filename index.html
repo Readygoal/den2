@@ -19,6 +19,7 @@
   </button>
   <nav class="desktop-nav" aria-label="Primary navigation">
     <button data-nav="home" class="active" data-i18n="navHome">Home</button>
+    <button data-nav="guide" data-i18n="navGuide">Ask the Guide</button>
     <button data-nav="lab" data-i18n="navLab">Draft Lab</button>
     <button data-nav="path" data-i18n="navPath">Writing Path</button>
     <button data-nav="toolkit" data-i18n="navToolkit">Toolkit</button>
@@ -48,7 +49,8 @@
       <h1 data-i18n="heroTitle">Turn academic-writing problems into <em>clear next moves.</em></h1>
       <p data-i18n="heroText">This studio does not distribute the book. It turns the guide’s underlying principles into practical diagnostics, decisions, and writing workflows.</p>
       <div class="hero-actions">
-        <button class="primary" data-nav="lab" data-i18n="scanDraft">Scan my draft</button>
+        <button class="primary" data-nav="guide" data-i18n="askGuideCta">Ask the Guide</button>
+        <button class="secondary" data-nav="lab" data-i18n="scanDraft">Scan my draft</button>
         <button class="secondary" data-nav="path" data-i18n="chooseTask">Choose what I’m working on</button>
       </div>
       <div class="trust-row">
@@ -67,10 +69,11 @@
         <button id="newTask" class="text-btn" data-i18n="anotherTask">Give me another</button>
       </div>
       <div class="mini-grid">
-        <button data-nav="lab"><span>01</span><b data-i18n="quickDiagnose">Quick Diagnose</b><small data-i18n="quickDiagnoseSub">Paste a paragraph and see risk signals.</small></button>
-        <button data-nav="path"><span>02</span><b data-i18n="pathfinder">Pathfinder</b><small data-i18n="pathfinderSub">Start from the task, not the chapter.</small></button>
-        <button data-nav="toolkit"><span>03</span><b data-i18n="workspace">Workspace</b><small data-i18n="workspaceSub">Build and save your decisions locally.</small></button>
-        <button data-nav="books"><span>04</span><b data-i18n="bookPortal">Book Portal</b><small data-i18n="bookPortalSub">Buy the full Turkish or English guide.</small></button>
+        <button data-nav="guide"><span>01</span><b data-i18n="guideCard">Ask the Guide</b><small data-i18n="guideCardSub">Ask a question and get a distilled book-based answer.</small></button>
+        <button data-nav="lab"><span>02</span><b data-i18n="quickDiagnose">Quick Diagnose</b><small data-i18n="quickDiagnoseSub">Paste a paragraph and see risk signals.</small></button>
+        <button data-nav="path"><span>03</span><b data-i18n="pathfinder">Pathfinder</b><small data-i18n="pathfinderSub">Start from the task, not the chapter.</small></button>
+        <button data-nav="toolkit"><span>04</span><b data-i18n="workspace">Workspace</b><small data-i18n="workspaceSub">Build and save your decisions locally.</small></button>
+        <button data-nav="books"><span>05</span><b data-i18n="bookPortal">Book Portal</b><small data-i18n="bookPortalSub">Buy the full Turkish or English guide.</small></button>
       </div>
     </div>
   </div>
@@ -84,6 +87,35 @@
     <div><span>🔒</span><div><b data-i18n="protectionTitle">The book stays the book.</b><p data-i18n="protectionText">No PDF, chapter text, example bank, or full worksheet content is shipped with this website. The platform uses transformed decision rules and interactive workflows inspired by the guide.</p></div></div>
     <button data-nav="books" class="secondary" data-i18n="seeBooks">See the books</button>
   </section>
+</section>
+
+<section id="guideView" class="view">
+  <div class="page-head"><div><span class="eyebrow" data-i18n="guideEyebrow">ASK THE GUIDE</span><h2 data-i18n="guideTitle">Ask the book a practical question</h2><p data-i18n="guideText">Get a concise answer distilled from the guide’s problem-solving logic. The system points you to relevant problem numbers and tools without exposing chapter text.</p></div><span class="privacy-badge">● <span data-i18n="guideProtected">Protected knowledge mode</span></span></div>
+  <div class="guide-layout">
+    <section class="guide-chat-card">
+      <div id="guideHistory" class="guide-history">
+        <div class="guide-bubble assistant"><span class="guide-avatar">A</span><div><b data-i18n="guideWelcomeTitle">What are you stuck on?</b><p data-i18n="guideWelcomeText">Ask naturally: “My discussion repeats the findings. What should I do?” or “How can I show the research gap without exaggerating it?”</p></div></div>
+      </div>
+      <div class="guide-compose">
+        <textarea id="guideQuestion" rows="3" data-i18n-placeholder="guidePlaceholder" placeholder="Ask about your research topic, literature review, method, discussion, citations, AI use, journal selection..."></textarea>
+        <div class="guide-compose-foot"><small data-i18n="guidePrivacyNote">Your question is processed in this browser. Answers are distilled guidance, not quotations from the book.</small><button id="askGuideBtn" class="primary" data-i18n="askButton">Ask</button></div>
+      </div>
+    </section>
+    <aside class="guide-side-card">
+      <span class="eyebrow" data-i18n="tryAsking">TRY ASKING</span>
+      <div class="question-chips">
+        <button data-guide-question="How can I make my research gap visible without saying there are no studies?" data-guide-tr="Literatürdeki boşluğu 'hiç çalışma yok' demeden nasıl görünür kılabilirim?">Research gap</button>
+        <button data-guide-question="My literature review is a list of studies. How do I turn it into synthesis?" data-guide-tr="Literatür taramam çalışma listesinden ibaret. Bunu nasıl senteze dönüştürebilirim?">Literature synthesis</button>
+        <button data-guide-question="How do I write a strong research question?" data-guide-tr="Güçlü bir araştırma sorusunu nasıl yazabilirim?">Research question</button>
+        <button data-guide-question="My discussion repeats the findings. What should I change?" data-guide-tr="Tartışma bölümüm bulguları tekrar ediyor. Neyi değiştirmeliyim?">Discussion</button>
+        <button data-guide-question="How can I paraphrase without losing my own voice?" data-guide-tr="Kendi sesimi kaybetmeden nasıl paraphrase yapabilirim?">Paraphrasing</button>
+        <button data-guide-question="How should I use AI responsibly in academic writing?" data-guide-tr="Akademik yazmada yapay zekâyı sorumlu biçimde nasıl kullanmalıyım?">AI & integrity</button>
+        <button data-guide-question="How should I choose a journal for my article?" data-guide-tr="Makalem için dergiyi nasıl seçmeliyim?">Journal fit</button>
+        <button data-guide-question="How should I respond to reviewer comments?" data-guide-tr="Hakem yorumlarına nasıl cevap vermeliyim?">Reviewer response</button>
+      </div>
+      <div class="guide-boundary"><b data-i18n="guideBoundaryTitle">What it will not do</b><p data-i18n="guideBoundaryText">It will not reproduce full chapters, long passages, the complete example bank, or the full book toolkit. For those, it directs readers to the book.</p></div>
+    </aside>
+  </div>
 </section>
 
 <section id="labView" class="view">
@@ -136,7 +168,7 @@
 </section>
 </main>
 
-<nav class="mobile-nav" aria-label="Mobile navigation"><button data-nav="home">⌂<span data-i18n="navHome">Home</span></button><button data-nav="lab">⌁<span data-i18n="navLab">Draft Lab</span></button><button data-nav="path">↗<span data-i18n="navPath">Path</span></button><button data-nav="toolkit">▦<span data-i18n="navToolkit">Toolkit</span></button><button data-nav="books">▤<span data-i18n="navBooks">Books</span></button></nav>
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-nav="home">⌂<span data-i18n="navHome">Home</span></button><button data-nav="guide">?<span data-i18n="navGuide">Guide</span></button><button data-nav="lab">⌁<span data-i18n="navLab">Draft Lab</span></button><button data-nav="path">↗<span data-i18n="navPath">Path</span></button><button data-nav="toolkit">▦<span data-i18n="navToolkit">Toolkit</span></button><button data-nav="books">▤<span data-i18n="navBooks">Books</span></button></nav>
 <div id="toast" class="toast"></div>
 <script type="module" src="assets/app.js"></script>
 </div>
