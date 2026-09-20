@@ -3,174 +3,113 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7fafc">
-<meta name="description" content="Academic Writing Studio — a practical, privacy-first writing companion informed by Ahmet Başal's Academic Writing Guide.">
-<title>Academic Writing Studio — Ahmet Başal</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f7f8fb">
+<title>Academic Writing Workbench — Ahmet Başal</title>
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
-<div class="app-shell">
-<header class="topbar">
-  <button class="brand" data-nav="home" aria-label="Home">
-    <span class="brand-mark">A</span>
-    <span class="brand-copy"><b>Academic Writing Studio</b><small>by Ahmet Başal</small></span>
-  </button>
-  <nav class="desktop-nav" aria-label="Primary navigation">
-    <button data-nav="home" class="active" data-i18n="navHome">Home</button>
-    <button data-nav="guide" data-i18n="navGuide">Ask the Guide</button>
-    <button data-nav="lab" data-i18n="navLab">Draft Lab</button>
-    <button data-nav="path" data-i18n="navPath">Writing Path</button>
-    <button data-nav="toolkit" data-i18n="navToolkit">Toolkit</button>
-    <button data-nav="books" data-i18n="navBooks">Books</button>
-  </nav>
-  <div class="top-controls">
-    <div class="theme-picker" aria-label="Theme">
-      <button class="theme-dot" data-theme="cloud" title="Cloud" style="--dot:#eef4ff"></button>
-      <button class="theme-dot" data-theme="ivory" title="Ivory" style="--dot:#fff4d8"></button>
-      <button class="theme-dot" data-theme="sage" title="Sage" style="--dot:#dcefdc"></button>
-      <button class="theme-dot" data-theme="sky" title="Sky" style="--dot:#d9f2ff"></button>
-      <button class="theme-dot" data-theme="lavender" title="Lavender" style="--dot:#eee2ff"></button>
-      <button class="theme-dot" data-theme="midnight" title="Midnight" style="--dot:#14213d"></button>
+<div class="shell">
+  <aside class="sidebar">
+    <button class="brand" data-view="dashboard"><span>AW</span><b>Academic Writing<br>Workbench</b></button>
+    <div class="project-mini">
+      <label>Current project</label>
+      <select id="projectSelect"></select>
+      <button id="newProjectBtn">+ New project</button>
     </div>
-    <select id="uiLang" class="mini-select" aria-label="Interface language">
-      <option value="en">EN</option><option value="tr">TR</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option>
-    </select>
-    <button class="settings-btn" data-nav="settings" aria-label="Settings">⚙</button>
-  </div>
-</header>
+    <nav>
+      <button data-view="dashboard" class="active"><i>⌂</i><span data-t="navDashboard">Dashboard</span></button>
+      <button data-view="guide"><i>?</i><span data-t="navGuide">Ask the Guide</span></button>
+      <button data-view="diagnose"><i>✓</i><span data-t="navDiagnose">Diagnose</span></button>
+      <button data-view="build"><i>✎</i><span data-t="navBuild">Build a Section</span></button>
+      <button data-view="sources"><i>≡</i><span data-t="navSources">Sources & Citations</span></button>
+      <button data-view="toolkit"><i>▦</i><span data-t="navToolkit">25 Tools</span></button>
+      <button data-view="publish"><i>↗</i><span data-t="navPublish">Submission</span></button>
+      <button data-view="books"><i>▤</i><span data-t="navBooks">Books</span></button>
+    </nav>
+    <div class="side-footer"><span>Book-informed companion</span><small>No book PDF is hosted here.</small></div>
+  </aside>
 
-<main>
-<section id="homeView" class="view active">
-  <div class="hero">
-    <div class="hero-copy">
-      <span class="pill" data-i18n="privacyPill">Book-informed · privacy-first · no API bill</span>
-      <h1 data-i18n="heroTitle">Turn academic-writing problems into <em>clear next moves.</em></h1>
-      <p data-i18n="heroText">This studio does not distribute the book. It turns the guide’s underlying principles into practical diagnostics, decisions, and writing workflows.</p>
-      <div class="hero-actions">
-        <button class="primary" data-nav="guide" data-i18n="askGuideCta">Ask the Guide</button>
-        <button class="secondary" data-nav="lab" data-i18n="scanDraft">Scan my draft</button>
-        <button class="secondary" data-nav="path" data-i18n="chooseTask">Choose what I’m working on</button>
+  <div class="workspace">
+    <header class="topbar">
+      <div><b id="viewTitle">Dashboard</b><small id="viewSub">Work on the manuscript, not the interface.</small></div>
+      <div class="controls">
+        <select id="langSelect"><option value="en">EN</option><option value="tr">TR</option><option value="de">DE</option><option value="fr">FR</option><option value="es">ES</option></select>
+        <select id="themeSelect"><option value="light">Light</option><option value="ivory">Ivory</option><option value="sage">Sage</option><option value="sky">Sky</option><option value="dark">Dark</option></select>
       </div>
-      <div class="trust-row">
-        <span><b>0</b><small data-i18n="pdfsHosted">book PDFs hosted</small></span>
-        <span><b>0</b><small data-i18n="apiKeys">API keys required</small></span>
-        <span><b>6</b><small data-i18n="themes">visual themes</small></span>
-        <span><b>5</b><small data-i18n="languages">interface languages</small></span>
-      </div>
-    </div>
-    <div class="hero-board">
-      <div class="board-head"><span data-i18n="todayDesk">Today at your writing desk</span><b id="todayDate"></b></div>
-      <div class="focus-card">
-        <span class="focus-label" data-i18n="microTask">Micro-task</span>
-        <h3 id="dailyTask">Make one claim more precise.</h3>
-        <p id="dailyPrompt">Find a sentence that sounds stronger than your evidence and calibrate it.</p>
-        <button id="newTask" class="text-btn" data-i18n="anotherTask">Give me another</button>
-      </div>
-      <div class="mini-grid">
-        <button data-nav="guide"><span>01</span><b data-i18n="guideCard">Ask the Guide</b><small data-i18n="guideCardSub">Ask a question and get a distilled book-based answer.</small></button>
-        <button data-nav="lab"><span>02</span><b data-i18n="quickDiagnose">Quick Diagnose</b><small data-i18n="quickDiagnoseSub">Paste a paragraph and see risk signals.</small></button>
-        <button data-nav="path"><span>03</span><b data-i18n="pathfinder">Pathfinder</b><small data-i18n="pathfinderSub">Start from the task, not the chapter.</small></button>
-        <button data-nav="toolkit"><span>04</span><b data-i18n="workspace">Workspace</b><small data-i18n="workspaceSub">Build and save your decisions locally.</small></button>
-        <button data-nav="books"><span>05</span><b data-i18n="bookPortal">Book Portal</b><small data-i18n="bookPortalSub">Buy the full Turkish or English guide.</small></button>
-      </div>
-    </div>
+    </header>
+
+    <main>
+      <section id="dashboard" class="view active">
+        <div class="page-head compact"><div><h1 data-t="dashTitle">Your manuscript at a glance</h1><p data-t="dashText">Keep the project question, contribution, and current writing task visible.</p></div><button class="primary" data-open-project data-t="editProject">Edit project</button></div>
+        <div class="dashboard-grid">
+          <article class="panel project-card">
+            <span class="label" data-t="projectCore">PROJECT CORE</span>
+            <h2 id="dashProjectTitle">Untitled project</h2>
+            <div class="core-list"><div><small data-t="purpose">Purpose</small><p id="dashPurpose">—</p></div><div><small data-t="researchQuestion">Research question</small><p id="dashRQ">—</p></div><div><small data-t="contribution">Contribution</small><p id="dashContribution">—</p></div></div>
+          </article>
+          <article class="panel next-card"><span class="label" data-t="nextBest">NEXT USEFUL MOVE</span><div id="nextMove"></div></article>
+        </div>
+        <div class="section-block"><div class="block-head"><div><h2 data-t="workByTask">Work by academic task</h2><p data-t="workByTaskText">Each route is tied to specific problems and tools from the guide.</p></div></div><div id="taskGrid" class="task-grid"></div></div>
+        <div class="section-block"><div class="block-head"><div><h2 data-t="recentReport">Latest diagnostic</h2><p data-t="recentReportText">Saved from the last section check.</p></div><button class="link" data-view="diagnose" data-t="runDiagnostic">Run diagnostic →</button></div><div id="lastDiagnostic" class="panel empty-state"></div></div>
+      </section>
+
+      <section id="guide" class="view">
+        <div class="page-head"><div><h1 data-t="guideTitle">Ask the Guide</h1><p data-t="guideText">Search all 120 writing problems. Answers use the book’s distilled principles, problem numbers, and linked tools without reproducing chapters.</p></div></div>
+        <div class="guide-layout">
+          <article class="panel guide-main">
+            <div class="ask-row"><textarea id="guideQuestion" rows="3" data-ph="guidePlaceholder" placeholder="e.g. My literature review is just a list of studies. What should I change?"></textarea><button id="guideAskBtn" class="primary" data-t="ask">Ask</button></div>
+            <div class="quick-questions" id="quickQuestions"></div>
+            <div id="guideAnswer" class="guide-answer empty-state" data-t="guideEmpty">Ask a real writing question. The engine will search the 120 problem notes in the guide.</div>
+          </article>
+          <aside class="panel problem-browser"><div class="browser-head"><span class="label">120-PROBLEM CLINIC</span><input id="problemSearch" data-ph="problemSearch" placeholder="Search problems..."></div><div class="stage-filter" id="stageFilter"></div><div id="problemList" class="problem-list"></div></aside>
+        </div>
+      </section>
+
+      <section id="diagnose" class="view">
+        <div class="page-head"><div><h1 data-t="diagnoseTitle">Diagnose a section</h1><p data-t="diagnoseText">Select the section you are writing. The checks change according to the problems discussed in the guide.</p></div></div>
+        <div class="diagnose-grid">
+          <article class="panel input-panel">
+            <div class="form-row"><label data-t="section">Section</label><select id="diagSection"><option value="abstract">Abstract</option><option value="introduction">Introduction</option><option value="literature">Literature review</option><option value="method">Method</option><option value="findings">Findings</option><option value="discussion">Discussion</option><option value="conclusion">Conclusion</option><option value="general">General paragraph</option></select></div>
+            <textarea id="diagText" class="large-text" data-ph="pasteSection" placeholder="Paste the section or paragraph here..."></textarea>
+            <div id="comparisonWrap" class="hidden"><label data-t="optionalFindings">Optional: paste the findings text to test whether the discussion repeats it</label><textarea id="comparisonText" rows="7"></textarea></div>
+            <div class="action-row"><span id="diagCount">0 words</span><button id="diagnoseBtn" class="primary" data-t="analyse">Analyse with guide criteria</button></div>
+          </article>
+          <article class="panel report-panel"><div class="report-head"><div><span class="label" data-t="report">REPORT</span><h2 id="diagHeadline" data-t="notAnalysed">Not analysed yet</h2></div><div id="diagScore" class="score">—</div></div><div id="diagResults" class="check-results empty-state" data-t="diagEmpty">The report will show the exact guide problems behind each check and a practical revision move.</div></article>
+        </div>
+      </section>
+
+      <section id="build" class="view">
+        <div class="page-head"><div><h1 data-t="buildTitle">Build, don’t stare at a blank page</h1><p data-t="buildText">Use the book’s planning tools to make the reasoning visible before writing full prose.</p></div></div>
+        <div class="builder-tabs" id="builderTabs"></div>
+        <div class="builder-grid"><article class="panel" id="builderForm"></article><article class="panel output-panel"><span class="label" data-t="livePlan">LIVE PLAN</span><div id="builderOutput"></div></article></div>
+      </section>
+
+      <section id="sources" class="view">
+        <div class="page-head"><div><h1 data-t="sourcesTitle">Sources & citations</h1><p data-t="sourcesText">Three concrete checks: citation–reference matching, paraphrase overlap, and literature synthesis.</p></div></div>
+        <div class="source-tabs" id="sourceTabs"><button data-source-tab="match" class="active" data-t="citationMatcher">Citation ↔ Reference Matcher</button><button data-source-tab="paraphrase" data-t="paraphraseCheck">Paraphrase Check</button><button data-source-tab="synthesis" data-t="synthesisMatrix">Synthesis Matrix</button></div>
+        <div id="sourcePane"></div>
+      </section>
+
+      <section id="toolkit" class="view">
+        <div class="page-head"><div><h1 data-t="toolsTitle">25 digital tools from the book</h1><p data-t="toolsText">Not decorative cards: each tool is an editable workspace tied to the relevant book problems.</p></div><button id="exportProject" class="secondary" data-t="exportProject">Export project data</button></div>
+        <div class="tool-layout"><aside class="tool-index" id="toolIndex"></aside><article class="panel tool-pane" id="toolPane"></article></div>
+      </section>
+
+      <section id="publish" class="view">
+        <div class="page-head"><div><h1 data-t="publishTitle">Submission workbench</h1><p data-t="publishText">Use the final-stage tools for similarity/AI responsibility, journal fit, thesis-to-article decisions, and reviewer responses.</p></div></div>
+        <div id="publishGrid" class="publish-grid"></div>
+      </section>
+
+      <section id="books" class="view">
+        <div class="page-head"><div><h1 data-t="booksTitle">The full explanations remain in the books</h1><p data-t="booksText">This platform applies the guide. It does not host the Turkish or English PDF.</p></div></div>
+        <div class="books-grid"><article class="panel book"><div class="book-art en">ACADEMIC<br>WRITING<br>GUIDE<small>Ahmet Başal</small></div><div><h2>Academic Writing Guide</h2><p data-t="enBook">English edition with the full explanations, examples, problem discussions, and toolkit.</p><a class="primary" href="https://lnkd.in/dVZad6Dh" target="_blank" rel="noopener" data-t="buyEn">View / buy English edition</a></div></article><article class="panel book"><div class="book-art tr">AKADEMİK<br>YAZMA<br>REHBERİ<small>Ahmet Başal</small></div><div><h2>Akademik Yazma Rehberi</h2><p data-t="trBook">Türkçe tam kitap: açıklamalar, örnekler, sorun tartışmaları ve araçlar.</p><a class="primary" href="https://ahmetbasal.gumroad.com/l/akademikyazmarehberi" target="_blank" rel="noopener" data-t="buyTr">Türkçe kitabı incele / satın al</a></div></article></div>
+      </section>
+    </main>
   </div>
+</div>
 
-  <section class="section-block">
-    <div class="section-heading"><span class="eyebrow" data-i18n="startWhere">START WHERE YOU ARE</span><h2 data-i18n="whatDoing">What are you trying to do today?</h2><p data-i18n="whatDoingText">Pick the job in front of you. The studio will take you to the smallest useful next step.</p></div>
-    <div id="taskCards" class="task-cards"></div>
-  </section>
-
-  <section class="protection-banner">
-    <div><span>🔒</span><div><b data-i18n="protectionTitle">The book stays the book.</b><p data-i18n="protectionText">No PDF, chapter text, example bank, or full worksheet content is shipped with this website. The platform uses transformed decision rules and interactive workflows inspired by the guide.</p></div></div>
-    <button data-nav="books" class="secondary" data-i18n="seeBooks">See the books</button>
-  </section>
-</section>
-
-<section id="guideView" class="view">
-  <div class="page-head"><div><span class="eyebrow" data-i18n="guideEyebrow">ASK THE GUIDE</span><h2 data-i18n="guideTitle">Ask the book a practical question</h2><p data-i18n="guideText">Get a concise answer distilled from the guide’s problem-solving logic. The system points you to relevant problem numbers and tools without exposing chapter text.</p></div><span class="privacy-badge">● <span data-i18n="guideProtected">Protected knowledge mode</span></span></div>
-  <div class="guide-layout">
-    <section class="guide-chat-card">
-      <div id="guideHistory" class="guide-history">
-        <div class="guide-bubble assistant"><span class="guide-avatar">A</span><div><b data-i18n="guideWelcomeTitle">What are you stuck on?</b><p data-i18n="guideWelcomeText">Ask naturally: “My discussion repeats the findings. What should I do?” or “How can I show the research gap without exaggerating it?”</p></div></div>
-      </div>
-      <div class="guide-compose">
-        <textarea id="guideQuestion" rows="3" data-i18n-placeholder="guidePlaceholder" placeholder="Ask about your research topic, literature review, method, discussion, citations, AI use, journal selection..."></textarea>
-        <div class="guide-compose-foot"><small data-i18n="guidePrivacyNote">Your question is processed in this browser. Answers are distilled guidance, not quotations from the book.</small><button id="askGuideBtn" class="primary" data-i18n="askButton">Ask</button></div>
-      </div>
-    </section>
-    <aside class="guide-side-card">
-      <span class="eyebrow" data-i18n="tryAsking">TRY ASKING</span>
-      <div class="question-chips">
-        <button data-guide-question="How can I make my research gap visible without saying there are no studies?" data-guide-tr="Literatürdeki boşluğu 'hiç çalışma yok' demeden nasıl görünür kılabilirim?">Research gap</button>
-        <button data-guide-question="My literature review is a list of studies. How do I turn it into synthesis?" data-guide-tr="Literatür taramam çalışma listesinden ibaret. Bunu nasıl senteze dönüştürebilirim?">Literature synthesis</button>
-        <button data-guide-question="How do I write a strong research question?" data-guide-tr="Güçlü bir araştırma sorusunu nasıl yazabilirim?">Research question</button>
-        <button data-guide-question="My discussion repeats the findings. What should I change?" data-guide-tr="Tartışma bölümüm bulguları tekrar ediyor. Neyi değiştirmeliyim?">Discussion</button>
-        <button data-guide-question="How can I paraphrase without losing my own voice?" data-guide-tr="Kendi sesimi kaybetmeden nasıl paraphrase yapabilirim?">Paraphrasing</button>
-        <button data-guide-question="How should I use AI responsibly in academic writing?" data-guide-tr="Akademik yazmada yapay zekâyı sorumlu biçimde nasıl kullanmalıyım?">AI & integrity</button>
-        <button data-guide-question="How should I choose a journal for my article?" data-guide-tr="Makalem için dergiyi nasıl seçmeliyim?">Journal fit</button>
-        <button data-guide-question="How should I respond to reviewer comments?" data-guide-tr="Hakem yorumlarına nasıl cevap vermeliyim?">Reviewer response</button>
-      </div>
-      <div class="guide-boundary"><b data-i18n="guideBoundaryTitle">What it will not do</b><p data-i18n="guideBoundaryText">It will not reproduce full chapters, long passages, the complete example bank, or the full book toolkit. For those, it directs readers to the book.</p></div>
-    </aside>
-  </div>
-</section>
-
-<section id="labView" class="view">
-  <div class="page-head"><div><span class="eyebrow">DRAFT LAB</span><h2 data-i18n="labTitle">A calm second look at your paragraph</h2><p data-i18n="labText">The scanner flags patterns worth reviewing. It does not grade your writing and it does not upload your draft.</p></div><span class="privacy-badge">● <span data-i18n="runsBrowser">Runs in your browser</span></span></div>
-  <div class="lab-layout">
-    <div class="draft-card">
-      <div class="draft-toolbar"><select id="sectionType"><option value="general">General</option><option value="abstract">Abstract</option><option value="introduction">Introduction</option><option value="literature">Literature review</option><option value="method">Method</option><option value="findings">Findings</option><option value="discussion">Discussion</option><option value="conclusion">Conclusion</option></select><button id="sampleBtn" class="text-btn" data-i18n="sample">Load sample</button></div>
-      <textarea id="draftText" data-i18n-placeholder="pasteDraft" placeholder="Paste one paragraph or a short section here..."></textarea>
-      <div class="draft-footer"><span id="wordCount">0 words</span><div><button id="clearDraft" class="secondary" data-i18n="clear">Clear</button><button id="scanBtn" class="primary" data-i18n="scan">Scan</button></div></div>
-    </div>
-    <div class="insight-card">
-      <div class="insight-head"><div><span class="eyebrow" data-i18n="reviewSignals">REVIEW SIGNALS</span><h3 id="signalHeadline" data-i18n="beforeScan">Nothing is being judged.</h3></div><div id="signalScore" class="signal-score">—</div></div>
-      <div id="signalsPane" class="signal-list"><div class="empty-note" data-i18n="scanEmpty">Run a scan. You’ll get concise, actionable checks—not a rewritten paragraph.</div></div>
-      <div id="guideRefs" class="guide-ref-box hidden"></div>
-    </div>
-  </div>
-  <div class="lab-secondary">
-    <div class="analysis-card"><span class="eyebrow">TRACK & STITCH</span><h3 data-i18n="flowTitle">Does each sentence have a visible job?</h3><div id="flowMap" class="flow-map"><div class="empty-note" data-i18n="scanFirst">Scan a paragraph first.</div></div></div>
-    <div class="analysis-card"><span class="eyebrow">ABSTRACT X-RAY</span><h3 data-i18n="xrayTitle">Five elements, one compact view</h3><div id="xray" class="xray"><div class="empty-note" data-i18n="abstractHint">Choose Abstract and scan to check for common structural signals.</div></div></div>
-  </div>
-</section>
-
-<section id="pathView" class="view">
-  <div class="page-head"><div><span class="eyebrow" data-i18n="writingPath">WRITING PATH</span><h2 data-i18n="pathTitle">Start with the task, not the table of contents</h2><p data-i18n="pathText">Choose a stage and get a compact sequence of decisions. Each route points back to relevant guide problem numbers without reproducing the book text.</p></div></div>
-  <div id="pathTabs" class="path-tabs"></div>
-  <div id="pathBoard" class="path-board"></div>
-</section>
-
-<section id="toolkitView" class="view">
-  <div class="page-head"><div><span class="eyebrow" data-i18n="toolkit">TOOLKIT</span><h2 data-i18n="toolkitTitle">Small tools for real writing decisions</h2><p data-i18n="toolkitText">These are digital workflows derived from the guide’s practical logic. Your entries stay in this browser unless you export them.</p></div><div><button id="exportWorkspace" class="secondary" data-i18n="export">Export my data</button></div></div>
-  <div class="toolkit-layout"><aside id="toolList" class="tool-list"></aside><div id="toolWorkspace" class="tool-workspace"></div></div>
-</section>
-
-<section id="booksView" class="view">
-  <div class="page-head"><div><span class="eyebrow" data-i18n="books">BOOKS</span><h2 data-i18n="booksTitle">The full content lives in the books</h2><p data-i18n="booksText">The website is a companion, not a substitute. Buy the complete guide to access the full explanations, examples, questions, and toolkit content.</p></div></div>
-  <div class="books-grid">
-    <article class="book-card english"><div class="book-cover"><small>AHMET BAŞAL</small><b>ACADEMIC<br>WRITING<br>GUIDE</b><span>Problems · Examples · Tools</span></div><div class="book-info"><span class="book-lang">ENGLISH EDITION</span><h3>Academic Writing Guide</h3><p data-i18n="englishBookText">A revised and internationally adapted English edition for graduate students, researchers, and academics.</p><a class="primary link-btn" href="https://lnkd.in/dVZad6Dh" target="_blank" rel="noopener noreferrer" data-i18n="buyEnglish">View / buy English edition</a></div></article>
-    <article class="book-card turkish"><div class="book-cover"><small>AHMET BAŞAL</small><b>AKADEMİK<br>YAZMA<br>REHBERİ</b><span>Uygulama ve örnek odaklı</span></div><div class="book-info"><span class="book-lang">TÜRKÇE BASKI</span><h3>Akademik Yazma Rehberi</h3><p data-i18n="turkishBookText">Akademik yazmada sık karşılaşılan sorunları örnekler ve uygulanabilir çözüm yollarıyla ele alan kapsamlı rehber.</p><a class="primary link-btn" href="https://ahmetbasal.gumroad.com/l/akademikyazmarehberi" target="_blank" rel="noopener noreferrer" data-i18n="buyTurkish">Türkçe kitabı incele / satın al</a></div></article>
-  </div>
-  <div class="copyright-note"><b data-i18n="copyrightTitle">Content protection</b><p data-i18n="copyrightText">This site intentionally contains no downloadable copy of either book and no hidden chapter archive. It exposes only transformed interactive logic needed for the tools on screen.</p></div>
-</section>
-
-<section id="settingsView" class="view">
-  <div class="page-head"><div><span class="eyebrow" data-i18n="settings">SETTINGS</span><h2 data-i18n="settingsTitle">Make the studio feel like yours</h2></div></div>
-  <div class="settings-grid">
-    <div class="setting-card"><h3 data-i18n="appearance">Appearance</h3><p data-i18n="appearanceText">Pick a background. Your choice is remembered on this device.</p><div class="theme-cards"><button data-theme="cloud"><i style="background:#eef4ff"></i>Cloud</button><button data-theme="ivory"><i style="background:#fff4d8"></i>Ivory</button><button data-theme="sage"><i style="background:#dcefdc"></i>Sage</button><button data-theme="sky"><i style="background:#d9f2ff"></i>Sky</button><button data-theme="lavender"><i style="background:#eee2ff"></i>Lavender</button><button data-theme="midnight"><i style="background:#14213d"></i>Midnight</button></div></div>
-    <div class="setting-card"><h3 data-i18n="privacy">Privacy</h3><p data-i18n="privacyText">Drafts are processed locally. Saved tool entries live in browser storage. You can erase them at any time.</p><button id="wipeData" class="danger" data-i18n="eraseLocal">Erase local workspace</button></div>
-    <div class="setting-card"><h3 data-i18n="localAi">Optional Local AI</h3><p data-i18n="localAiText">Experimental: download a small open model into a compatible browser and run it on-device. No OpenAI or Anthropic API key is used. The first download can be large.</p><button id="loadAi" class="secondary" data-i18n="loadAi">Load local model</button><div id="aiStatus" class="ai-status">Not loaded</div></div>
-  </div>
-</section>
-</main>
-
-<nav class="mobile-nav" aria-label="Mobile navigation"><button data-nav="home">⌂<span data-i18n="navHome">Home</span></button><button data-nav="guide">?<span data-i18n="navGuide">Guide</span></button><button data-nav="lab">⌁<span data-i18n="navLab">Draft Lab</span></button><button data-nav="path">↗<span data-i18n="navPath">Path</span></button><button data-nav="toolkit">▦<span data-i18n="navToolkit">Toolkit</span></button><button data-nav="books">▤<span data-i18n="navBooks">Books</span></button></nav>
+<dialog id="projectDialog"><form method="dialog" class="dialog-card"><div class="dialog-head"><h2 data-t="projectSettings">Project settings</h2><button value="cancel">×</button></div><div class="field"><label data-t="projectName">Project name</label><input id="pName"></div><div class="field"><label data-t="projectType">Type</label><select id="pType"><option>Article</option><option>Master's thesis</option><option>Doctoral dissertation</option><option>Book chapter</option><option>Research report</option></select></div><div class="field"><label data-t="purpose">Purpose</label><textarea id="pPurpose"></textarea></div><div class="field"><label data-t="researchQuestion">Research question</label><textarea id="pRQ"></textarea></div><div class="field"><label data-t="contribution">Contribution</label><textarea id="pContribution"></textarea></div><div class="field"><label data-t="keywords">Keywords</label><input id="pKeywords"></div><div class="dialog-actions"><button value="cancel" class="secondary" data-t="cancel">Cancel</button><button id="saveProjectBtn" value="default" class="primary" data-t="save">Save</button></div></form></dialog>
 <div id="toast" class="toast"></div>
 <script type="module" src="assets/app.js"></script>
-</div>
-</body>
-</html>
+</body></html>
