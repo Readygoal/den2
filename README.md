@@ -10,3 +10,7 @@ The core site is static and can run on GitHub Pages at no per-user API cost. Opt
 
 ## Publishing
 The site is plain HTML/CSS/JS. Publish the repository root with GitHub Pages.
+
+## Ask the Guide
+
+The public site includes a protected **Ask the Guide** feature. It answers natural-language questions with short, transformed guidance, relevant guide problem-number references, and links to the site's interactive tools. It does not retrieve or reproduce full book passages. The core Q&A runs in the browser and requires no paid API key.
